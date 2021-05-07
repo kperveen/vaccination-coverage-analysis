@@ -11,10 +11,13 @@ from sklearn.metrics import mean_squared_error
 # ridge regression and looking at the mean squared errors of every model.
 
 
-df = pd.read_csv("Cleaned-data-vc.csv")  # read data set
+df = pd.read_csv("std_df_full.csv")  # read data set
 
+# dummies = pd.get_dummies(df[['vaxView', 'demographicClass']])
+# print(dummies)
 y = df['value']  # assign the predictor to y
-X_ = df.drop(['value'], axis=1).astype('float64')  # dropping the predictor
+X_ = df.drop(['value', 'lowerLimit', 'confidenceInterval', 'upperError'],
+             axis=1).astype('float64')  # dropping the predictor
 
 # Define the feature set X.
 X = pd.concat([X_], axis=1)
